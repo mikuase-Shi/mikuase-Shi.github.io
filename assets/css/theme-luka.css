@@ -115,6 +115,16 @@ body.theme-luka .nav-left a {
   font-weight: 600;
 }
 
+body.theme-luka .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+body.theme-luka .nav-left a[aria-current="page"] {
+  color: var(--luka-accent);
+}
+
 body.theme-luka .theme-toggle {
   border: none;
   background: transparent;
@@ -437,6 +447,181 @@ body.theme-luka .template-credit {
   font-size: 12px;
 }
 
+body.theme-luka .blog-shell {
+  width: 100%;
+  max-width: 800px;
+  min-height: calc(100vh - 132px);
+  margin: 0 auto;
+  padding: 116px 32px 64px;
+}
+
+body.theme-luka .blog-header {
+  margin-bottom: 48px;
+}
+
+body.theme-luka .blog-title {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.2;
+}
+
+body.theme-luka .blog-description {
+  max-width: 680px;
+  margin: 0;
+  color: var(--luka-secondary);
+  font-size: 17px;
+}
+
+body.theme-luka .post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.theme-luka .post-list-item {
+  padding: 28px 0;
+  border-top: 1px solid var(--luka-footer-border);
+}
+
+body.theme-luka .post-list-item:last-child {
+  border-bottom: 1px solid var(--luka-footer-border);
+}
+
+body.theme-luka .post-list-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+body.theme-luka .post-list-title a {
+  color: var(--luka-text);
+}
+
+body.theme-luka .post-list-title a:hover {
+  color: var(--luka-accent);
+}
+
+body.theme-luka .post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 12px;
+  color: var(--luka-secondary);
+  font-size: 13px;
+}
+
+body.theme-luka .post-excerpt {
+  margin: 0;
+  color: var(--luka-secondary);
+}
+
+body.theme-luka .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body.theme-luka .post-tag {
+  padding: 3px 9px;
+  border: 1px solid var(--luka-border);
+  border-radius: 999px;
+  color: var(--luka-accent);
+  font-size: 12px;
+}
+
+body.theme-luka .post {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+body.theme-luka .post-header {
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--luka-footer-border);
+}
+
+body.theme-luka .post-title {
+  margin: 0 0 16px;
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+body.theme-luka .post-content {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+body.theme-luka .post-content h2,
+body.theme-luka .post-content h3 {
+  margin: 2em 0 0.7em;
+  line-height: 1.35;
+}
+
+body.theme-luka .post-content p,
+body.theme-luka .post-content ul,
+body.theme-luka .post-content ol {
+  margin: 0 0 1.25em;
+}
+
+body.theme-luka .post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2em auto;
+  border-radius: 8px;
+}
+
+body.theme-luka .post-content blockquote {
+  margin: 1.75em 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--luka-accent);
+  color: var(--luka-secondary);
+}
+
+body.theme-luka .post-content code {
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  background: var(--luka-social-bg);
+  font-family: "Ubuntu Mono", "SFMono-Regular", monospace;
+  font-size: 0.9em;
+}
+
+body.theme-luka .post-content pre {
+  overflow-x: auto;
+  margin: 1.75em 0;
+  padding: 18px 20px;
+  border: 1px solid var(--luka-border);
+  border-radius: 8px;
+  background: var(--luka-social-bg);
+  line-height: 1.6;
+}
+
+body.theme-luka .post-content pre code {
+  padding: 0;
+  background: transparent;
+}
+
+body.theme-luka .post-back {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+body.theme-luka .blog-footer {
+  padding: 24px 32px 40px;
+}
+
+body.theme-luka .empty-posts {
+  padding: 28px 0;
+  border-top: 1px solid var(--luka-footer-border);
+  border-bottom: 1px solid var(--luka-footer-border);
+  color: var(--luka-secondary);
+}
+
 body.theme-luka h1,
 body.theme-luka h2,
 body.theme-luka h3,
@@ -484,6 +669,34 @@ body.theme-luka strong {
 }
 
 @media (max-width: 640px) {
+  body.theme-luka .nav-left {
+    gap: 16px;
+  }
+
+  body.theme-luka .nav-left a {
+    font-size: 16px;
+  }
+
+  body.theme-luka .blog-shell {
+    padding: 96px 20px 48px;
+  }
+
+  body.theme-luka .blog-header {
+    margin-bottom: 32px;
+  }
+
+  body.theme-luka .post-list-item {
+    padding: 24px 0;
+  }
+
+  body.theme-luka .post-list-title {
+    font-size: 21px;
+  }
+
+  body.theme-luka .post-content {
+    font-size: 17px;
+  }
+
   body.theme-luka .image.avatar img {
     width: 148px;
     height: 148px;

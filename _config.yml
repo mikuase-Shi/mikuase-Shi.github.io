@@ -1,0 +1,16 @@
+title: Shengshi
+description: Shengshi's personal website and blog.
+url: "https://mikuase-shi.github.io"
+baseurl: ""
+timezone: Asia/Shanghai
+
+markdown: kramdown
+permalink: /blog/:title/
+excerpt_separator: "<!--more-->"
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
