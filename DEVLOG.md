@@ -10,6 +10,7 @@
 - Published the first blog post as an English translation of `blog0.txt`, with both English and Chinese titles.
 - Enabled MathJax so GitHub Pages can render inline and display formulas.
 - Inserted architecture, manifold, and Lacanian figures into the first blog post.
+- Replaced the letter-L favicon with a cowboy-hat emoji.
 
 ### Added
 
