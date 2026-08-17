@@ -17,6 +17,9 @@ description: Notes on robotics, machine learning, mathematics, and ongoing explo
         <h2 class="post-list-title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h2>
+        {% if post.title_zh %}
+          <p class="post-title-zh">{{ post.title_zh }}</p>
+        {% endif %}
         <div class="post-meta">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
           <span>{{ reading_time }} min read</span>

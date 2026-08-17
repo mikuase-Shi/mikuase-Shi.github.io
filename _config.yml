@@ -5,6 +5,9 @@ baseurl: ""
 timezone: Asia/Shanghai
 
 markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 permalink: /blog/:title/
 excerpt_separator: "<!--more-->"
 

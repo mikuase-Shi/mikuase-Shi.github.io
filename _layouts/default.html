@@ -15,6 +15,18 @@
   <script src="https://kit.fontawesome.com/a860a211d3.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ '/assets/css/font_sans_serif.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/theme-luka.css' | relative_url }}">
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [["$","$"], ["\\(","\\)"]],
+        displayMath: [["$$","$$"], ["\\[","\\]"]],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      CommonHTML: { linebreaks: { automatic: true } }
+    });
+  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS_CHTML"></script>
 </head>
 <body class="theme-luka">
   <nav class="top-nav">

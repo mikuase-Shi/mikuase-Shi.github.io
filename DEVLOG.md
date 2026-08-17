@@ -6,6 +6,9 @@
 
 - Replaced the homepage avatar with a square crop of the new profile photo.
 - Updated the displayed name from `Shengshi` to `Sheng Shi`.
+- Revised `blog0.txt` to use a more restrained technical style and expanded its mathematical, psychoanalytic, and motor-learning perspectives on JEPA.
+- Published the first blog post as an English translation of `blog0.txt`, with both English and Chinese titles.
+- Enabled MathJax so GitHub Pages can render inline and display formulas.
 
 ### Added
 

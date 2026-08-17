@@ -6,6 +6,9 @@ layout: default
 <article class="post">
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.title_zh %}
+      <p class="post-title-zh">{{ page.title_zh }}</p>
+    {% endif %}
     <div class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
       <span>{{ reading_time }} min read</span>

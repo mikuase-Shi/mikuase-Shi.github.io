@@ -548,6 +548,18 @@ body.theme-luka .post-title {
   letter-spacing: -0.02em;
 }
 
+body.theme-luka .post-title-zh {
+  margin: 0 0 16px;
+  color: var(--luka-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body.theme-luka .post-list-item .post-title-zh {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
 body.theme-luka .post-content {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 18px;
@@ -602,6 +614,29 @@ body.theme-luka .post-content pre {
 body.theme-luka .post-content pre code {
   padding: 0;
   background: transparent;
+}
+
+body.theme-luka .post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75em 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+}
+
+body.theme-luka .post-content th,
+body.theme-luka .post-content td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--luka-footer-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+body.theme-luka .post-content .MathJax_Display,
+body.theme-luka .post-content .MJXc-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
 
 body.theme-luka .post-back {
