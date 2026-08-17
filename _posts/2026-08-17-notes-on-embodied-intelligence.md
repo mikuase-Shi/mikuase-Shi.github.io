@@ -220,7 +220,7 @@ Latent space also needs a suitable geometry. Euclidean distance $$\lVert s_i-s_j
 
 ### 5.3 Differences from WAM
 
-WAM's flow matching models a conditional distribution $$p(y \mid x)$$ and therefore has to describe probability mass over an output space. JEPA's energy function only has to compare candidate targets; it need not reconstruct a full output. For control, the latter can be more direct, because a policy often cares which futures are reachable and cheaper, not how every pixel is generated.
+WAM's flow matching models a conditional distribution of the future given the context, so it has to describe probability mass over an output space. JEPA's energy function only has to compare candidate targets; it need not reconstruct a full output. For control, the latter can be more direct, because a policy often cares which futures are reachable and cheaper, not how every pixel is generated.
 
 Another difference is the reconstruction constraint. Even when WAM works in a VAE latent space, the information must still be rich enough to decode back to video. JEPA has no such requirement, so it can discard more appearance detail. The cost is equally direct: whether the discarded information was truly irrelevant to control cannot be judged by looking at a generated video.
 
