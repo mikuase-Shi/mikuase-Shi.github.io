@@ -41,6 +41,11 @@ $$
 
 RT-2 (2023) showed that a VLM can be finetuned into an action generator. OpenVLA (2024) released a 7B open model trained on 970k real robot demonstrations. π0 (late 2024) used MoT and flow matching; later work such as π0.5, GR00T, and Xiaomi's robot stack adopted similar designs. Discrete action tokenizers such as FAST and BEAST are used to reduce forgetting when a VLM moves from next-token prediction to continuous action generation. Pi-FAST scored 117 points higher than a same-backbone π0-DROID on RoboArena.
 
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/pi05.png' | relative_url }}" alt="π0.5 architecture with a VLM backbone and a smaller action expert">
+  <figcaption>A typical VLA split: a pretrained VLM backbone trained with next-token prediction, and a smaller action expert trained with flow matching. Gradients from the expert do not update the backbone.</figcaption>
+</figure>
+
 ### 2.2 The grounding gap: information lost when language is the goal
 
 One difficulty for VLA can be written as a compression problem. Let the true task goal $$g^*$$ include objects, poses, contacts, and constraints, and let the language instruction $$l$$ be a compression of that information:
@@ -122,6 +127,11 @@ Fast-WAM (2026.3) asks directly: is explicit future-video generation needed at t
 
 Earlier WAMs followed an "imagine, then act" pattern, iteratively denoising future video at test time, with latency of 590-810ms, about 3-4 times that of π0.5. Fast-WAM keeps video co-training, but removes the future-video branch at test time and generates actions from the current frame in a single forward pass. A structured attention mask prevents action tokens from seeing future video during training, so information cannot leak.
 
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/fast-wam.png' | relative_url }}" alt="Fast-WAM training and inference: video prediction is kept as a training objective, while test-time action generation does not attend to future video">
+  <figcaption>Training can still use video denoising. At test time, the cheaper option is to predict actions without generating future video, using video prediction only as a representation-learning objective.</figcaption>
+</figure>
+
 Controlled results:
 
 | Method | RoboTwin | LIBERO | Latency |
@@ -145,6 +155,11 @@ Second, **a blurred boundary with VLA**. If imagination is unnecessary at test t
 
 ## 5. JEPA: Latent Prediction as Another World Model
 
+<figure class="post-figure post-figure-portrait">
+  <img src="{{ '/assets/img/blog/yann-lecun.png' | relative_url }}" alt="Sketch of Yann LeCun at a desk with world-model notes">
+  <figcaption>Yann LeCun, whose JEPA papers argue for predicting in representation space rather than reconstructing pixels.</figcaption>
+</figure>
+
 ### 5.1 Core idea and mathematical form
 
 JEPA starts from a simple claim: **predict representations, not pixels.**
@@ -163,6 +178,11 @@ $$
 
 Unlike generative WAM, $$s_y$$ is not constrained by pixel reconstruction. The model does not need to render the future; it only needs to predict a target representation. In the ideal case, the encoder keeps changes related to time and action, and suppresses background texture, lighting, and sensor noise. What is actually kept still depends on the data, the masking policy, and the anti-collapse mechanism.
 
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/vjepa.png' | relative_url }}" alt="V-JEPA architecture with a context encoder, an EMA target encoder, a predictor, and a stop-gradient loss">
+  <figcaption>V-JEPA predicts masked latent tokens from a context encoder. The target encoder is an EMA copy and is blocked by stop-gradient, so the loss compares representations rather than pixels.</figcaption>
+</figure>
+
 ### 5.2 Geometry of latent space: state manifolds and quotient spaces
 
 Pixel observations live in a high-dimensional space $$\mathcal{X}\subset\mathbb{R}^{H\times W\times C}$$, but robot tasks usually involve far fewer degrees of freedom. Object poses, joint states, contact relations, and material deformation form a lower-dimensional state set that can be treated, approximately, as a manifold $$\mathcal{M}$$. The encoder's job can be written as:
@@ -172,6 +192,11 @@ h:\mathcal{X}\rightarrow\mathcal{M}\subset\mathbb{R}^d
 $$
 
 The same physical state can appear under different lighting, textures, and viewpoints. If a group $$G$$ stands for those task-irrelevant transformations, the desired object is closer to a quotient space $$\mathcal{X}/G$$: observations that look different but are physically equivalent should map to nearby representations. "Manifold" here is a modeling assumption, not a property that appears automatically once JEPA is used. If data coverage is thin, the latent space can bend, tear, or compress away contact information that control still needs.
+
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/manifold.png' | relative_url }}" alt="High-dimensional functions encoded onto a lower-dimensional manifold and mapped in latent space">
+  <figcaption>A schematic of compressing high-dimensional observations onto a lower-dimensional manifold. The figure includes a decoder; JEPA keeps the latent path and drops pixel reconstruction.</figcaption>
+</figure>
 
 An action $$a_t$$ then induces local dynamics on the manifold:
 
@@ -224,6 +249,11 @@ Some of these are implementation problems. Some may reflect information limits o
 
 Lacan's Real, Symbolic, and Imaginary can be used as a reading frame. The point is not that models possess a subject, and not that psychoanalysis explains an optimizer. The question is narrower: when a model approaches the physical world through language, images, or latent representations, what does it establish, and what does it leave out?
 
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/lacan-rsi.png' | relative_url }}" alt="Triangular diagram of Lacan's Real, Symbolic, and Imaginary">
+  <figcaption>The three registers as a reading diagram, not as a taxonomy of models. The extra symbols mark relations among the registers; they are not mapped onto VLA, WAM, or JEPA.</figcaption>
+</figure>
+
 ### 6.1 VLA and the Symbolic: an instruction cannot close a task
 
 Language instructions belong to a symbolic order. Through difference and rule they organize experience, so that "pick up the cup" and "put it on the table" become tasks that can be communicated, reused, and composed. Symbolization is never a complete copy of a physical process. The same instruction can correspond to many grasp trajectories, and the same trajectory can be described in different words.
@@ -257,6 +287,11 @@ This also changes what "world model" can mean. A world model is no longer an unf
 Assigning VLA to the Symbolic, WAM to the Imaginary, and JEPA to the Real can only be a sketch of tendencies, not a strict classification. VLA still depends on visual representations, WAM still takes language as a condition, and JEPA's latent space is still a symbolic system built from data and an objective.
 
 The Borromean knot is more useful as a picture of three demands holding one another in place. Language makes a task sayable, images make a state recognizable, and collision, friction, and contact keep exposing what the first two cannot cover. A deployable system has to keep the three together. The visual subgoals in π0.7, Motus's hybrid architecture, and VLA-JEPA can be read as different ways of making a join. Whether they form a stable knot is still a question for real interaction.
+
+<figure class="post-figure">
+  <img src="{{ '/assets/img/blog/borromean.png' | relative_url }}" alt="Three interlocking Borromean rings">
+  <figcaption>If any one ring is removed, the other two fall apart. The image is topological, not a claim that VLA, WAM, and JEPA occupy the three colors.</figcaption>
+</figure>
 
 ## 7. Neuroscience and Psychology: How Prediction Enters Action
 
