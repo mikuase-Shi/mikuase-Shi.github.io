@@ -2,6 +2,11 @@
 
 ## 2026-08-17
 
+### Changed
+
+- Replaced the homepage avatar with a square crop of the new profile photo.
+- Updated the displayed name from `Shengshi` to `Sheng Shi`.
+
 ### Added
 
 - Added a Jekyll-powered blog that preserves the existing Luka visual theme.
