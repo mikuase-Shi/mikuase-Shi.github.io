@@ -1,5 +1,5 @@
 title: Sheng Shi
-description: Sheng Shi's personal website and blog.
+description: Sheng Shi's personal website.
 url: "https://mikuase-shi.github.io"
 baseurl: ""
 timezone: Asia/Shanghai
@@ -17,3 +17,8 @@ defaults:
       type: posts
     values:
       layout: post
+
+# Temporarily hide the blog while preserving its source for later restoration.
+exclude:
+  - blog
+  - _posts
