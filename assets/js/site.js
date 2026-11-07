@@ -1,41 +1,27 @@
-(function() {
-  const themeToggle = document.getElementById("themeToggle");
-  const icon = themeToggle.querySelector("i");
+(() => {
+  const button = document.getElementById("themeToggle");
+  if (!button) return;
+  const root = document.documentElement;
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+  let hasPreference = false;
+  try { hasPreference = ["light", "dark"].includes(localStorage.getItem("theme")); } catch {}
 
-  function setTheme(isDark) {
-    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
-    icon.classList.toggle("fa-sun", isDark);
-    icon.classList.toggle("fa-moon", !isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+  function applyTheme(theme) {
+    root.dataset.theme = theme;
+    const label = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+    button.setAttribute("aria-label", label);
+    button.setAttribute("title", label);
   }
 
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setTheme(savedTheme ? savedTheme === "dark" : prefersDark);
-
-  themeToggle.addEventListener("click", function() {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    setTheme(!isDark);
+  applyTheme(root.dataset.theme || (systemTheme.matches ? "dark" : "light"));
+  button.hidden = false;
+  button.addEventListener("click", () => {
+    const theme = root.dataset.theme === "dark" ? "light" : "dark";
+    hasPreference = true;
+    applyTheme(theme);
+    try { localStorage.setItem("theme", theme); } catch {}
   });
-
-  const sections = document.querySelectorAll(".section");
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(function(section) {
-      observer.observe(section);
-    });
-  } else {
-    sections.forEach(function(section) {
-      section.classList.add("visible");
-    });
-  }
+  systemTheme.addEventListener("change", (event) => {
+    if (!hasPreference) applyTheme(event.matches ? "dark" : "light");
+  });
 })();

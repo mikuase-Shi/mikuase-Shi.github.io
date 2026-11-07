@@ -22,3 +22,5 @@ defaults:
 exclude:
   - blog
   - _posts
+  - README.md
+  - LICENSE.md

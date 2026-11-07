@@ -1,78 +1,30 @@
-# Luka Homepage
+# Sheng Shi
 
-[中文说明](README.zh-CN.md)
+Personal academic website: https://mikuase-shi.github.io/
 
-`Luka Homepage` is a warm, minimal, responsive homepage template for researchers, students, builders, and creators.
+An independently rebuilt, responsive page with a warm palette, typographic section index, and light / dark themes. The homepage uses local HTML, CSS, and JavaScript with no package dependencies, external fonts, or icon libraries.
 
-This folder is a standalone template version. You can copy everything inside `luka-homepage-template/` into a new repository and publish it directly with GitHub Pages.
+## Edit and preview
 
-## Suggested Repository Names
+- `index.html`: biography, education, research, learning resources, and projects.
+- `assets/css/site.css`: shared layout and original warm color values.
+- `assets/js/theme.js`: restores the saved theme before the page renders.
+- `assets/js/site.js`: accessible theme control and system preference handling.
+- `assets/img/`: profile photo, institution logos, favicons, and retained article figures.
+- `assets/cv/mylist.pdf`: current downloadable CV.
 
-- `luka-homepage`
-- `luka-homepage-template`
-- `luka-academic-homepage`
+Run `python3 -m http.server 8000` in this directory and open http://localhost:8000. Push to `main` to publish through the existing GitHub Pages branch deployment.
 
-## Features
+## Retained blog
 
-- Pure static `HTML / CSS / JS`, no build step required
-- Warm two-column layout for academic and personal websites
-- Built-in dark mode toggle
-- Mobile-friendly responsive design
-- Ready-made sections for `About`, `Education`, `Experience`, `Projects`, `Publications`, and `Awards`
-- Easy to customize with your own photo, links, logos, and resume
+The blog remains hidden by the `blog` and `_posts` exclusions in `_config.yml`. Its Markdown content and images are preserved. To restore it, remove those two exclusions and add a navigation link to `/blog/`. Jekyll uses `_layouts/` and `assets/css/blog.css` to render the index and articles; MathJax is loaded only for articles. Local article previews require Jekyll; the plain HTTP server previews the homepage only.
 
-## Quick Start
+## Repository history
 
-### 1. Create a New Repository
+The earlier site used a third-party template. Its obsolete layouts, styles, placeholder images, icon dependencies, and setup documentation have been replaced. `LICENSE.md` preserves the original repository's license notice. Personal text, photos, CV, article content, and institutional marks retain their existing ownership.
 
-Create a new GitHub repository and copy the contents of this folder into it.
+## 中文维护说明
 
-If you want other people to reuse it easily, enable `Template repository` in the repository settings.
+首页文案在 `index.html` 中修改，主题与响应式样式在 `assets/css/site.css`。保留原来的暖白 / 陶土橙及深色配色、所有个人资料与链接。无须安装前端依赖，推送 `main` 后由 GitHub Pages 发布。
 
-### 2. Customize the Content
-
-You will mainly edit:
-
-- `index.html`: page structure and content
-- `assets/css/theme-luka.css`: main stylesheet
-- `assets/img/avatar.svg`: default avatar placeholder
-- `assets/img/institution.svg`: default institution logo placeholder
-
-### 3. Replace Your Assets
-
-Recommended replacements:
-
-- Avatar: replace `assets/img/avatar.svg` with your own `png/jpg/svg`
-- Institution logo: replace `assets/img/institution.svg`
-- Favicon: replace `assets/img/favicon.svg`
-- Resume link: update the `Download my CV` link in `index.html`
-
-### 4. Deploy to GitHub Pages
-
-1. Open repository `Settings`
-2. Go to `Pages`
-3. Choose `Deploy from a branch`
-4. Select `main` and `/ (root)`
-5. Save and wait for deployment
-
-## Project Structure
-
-- `index.html`
-- `assets/css/font_sans_serif.css`
-- `assets/css/theme-luka.css`
-- `assets/js/scale.fix.js`
-- `assets/img/`
-- `assets/cv/`
-
-## Attribution
-
-The footer includes two lines by default:
-
-1. Your own site copyright
-2. `Luka Homepage template by Yuheng Yang`
-
-If you want to preserve template attribution, keep the second line.
-
-## License
-
-This folder includes its own `LICENSE.md` so it can be published as an independent repository.
+博客目前仍隐藏，文章和配图均保留；恢复时只需移除 `_config.yml` 中 `blog`、`_posts` 两项排除并添加导航入口。原许可声明保留于仓库，不在页面展示模板署名。
